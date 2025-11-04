@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Budget Allocation & Planning Tool</title>
+   <meta name="description" content="Plan and allocate quarterly budgets across focus areas with holdback reserves and exception management.">
+   <meta name="keywords" content="budget planning, quarterly allocation, team budgets, financial planning, budget distribution">
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <div class="container">
+       <div class="header">
+           <h1>💰 Budget Allocation & Planning Tool</h1>
+           <p>Plan and allocate quarterly budgets across focus areas with holdback reserves and exception management</p>
+           
+           <div class="disclaimer">
+               <strong>Disclaimer:</strong> This tool helps plan budget allocations for organizational planning. Always verify final allocations with finance teams and adjust based on actual business needs.
+           </div>
+       </div>
+
+       <div class="tabs">
+           <button class="tab active" onclick="showTab('setup')">Budget Setup</button>
+           <button class="tab" onclick="showTab('allocation')">Focus Area Allocation</button>
+           <button class="tab" onclick="showTab('overview')">Budget Overview</button>
+       </div>
+
+       <!-- Budget Setup Tab -->
+       <div id="setup" class="tab-content active">
+           <div class="estimator-grid">
+               <div class="estimator-card">
+                   <h2>📅 Quarterly Budget Input</h2>
+                   
+                   <div class="input-row">
+                       <div class="input-group">
+                           <label>Q1 Budget ($)</label>
+                           <input type="number" id="q1-budget" value="250000" oninput="calculateBudgets()">
+                       </div>
+                       <div class="input-group">
+                           <label>Q2 Budget ($)</label>
+                           <input type="number" id="q2-budget" value="250000" oninput="calculateBudgets()">
+                       </div>
+                   </div>
+                   
+                   <div class="input-row">
+                       <div class="input-group">
+                           <label>Q3 Budget ($)</label>
+                           <input type="number" id="q3-budget" value="250000" oninput="calculateBudgets()">
+                       </div>
+                       <div class="input-group">
+                           <label>Q4 Budget ($)</label>
+                           <input type="number" id="q4-budget" value="200000" oninput="calculateBudgets()">
+                       </div>
+                   </div>
+
+                   <div class="input-group">
+                       <label>Holdback Percentage (%)</label>
+                       <input type="number" id="holdback-percent" value="10" min="0" max="50" oninput="calculateBudgets()">
+                       <small>Reserve percentage for flexible allocation across the organization</small>
+                   </div>
+
+                   <div class="result-box">
+                       <h3>Annual Budget Summary</h3>
+                       <div class="budget-summary">
+                           <div class="summary-item">
+                               <span>Total Annual Budget:</span>
+                               <span id="total-annual-budget">$0</span>
+                           </div>
+                           <div class="summary-item">
+                               <span>Total Holdback Reserve:</span>
+                               <span id="total-holdback">$0</span>
+                           </div>
+                           <div class="summary-item">
+                               <span>Available for Allocation:</span>
+                               <span id="available-allocation">$0</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+
+               <div class="estimator-card">
+                   <h2>🎯 Budget Exceptions</h2>
+                   <p style="color: #718096; margin-bottom: 20px;">Add up to 2 special allocations per quarter (e.g., Executive T&E, Meeting Room Bookings)</p>
+                   
+                   <div class="exception-section">
+                       <div class="input-group">
+                           <label>Exception 1 Name</label>
+                           <input type="text" id="exception1-name" placeholder="e.g., Executive Allocation" oninput="calculateBudgets()">
+                       </div>
+                       <div class="input-row">
+                           <div class="input-group">
+                               <label>Q1 Amount ($)</label>
+                               <input type="number" id="exception1-q1" value="0" oninput="calculateBudgets()">
+                           </div>
+                           <div class="input-group">
+                               <label>Q2 Amount ($)</label>
+                               <input type="number" id="exception1-q2" value="0" oninput="calculateBudgets()">
+                           </div>
+                       </div>
+                       <div class="input-row">
+                           <div class="input-group">
+                               <label>Q3 Amount ($)</label>
+                               <input type="number" id="exception1-q3" value="0" oninput="calculateBudgets()">
+                           </div>
+                           <div class="input-group">
+                               <label>Q4 Amount ($)</label>
+                               <input type="number" id="exception1-q4" value="0" oninput="calculateBudgets()">
+                           </div>
+                       </div>
+                       <div class="exception-total">
+                           <strong>Annual Total: <span id="exception1-total">$0</span></strong>
+                       </div>
+                   </div>
+
+                   <div class="exception-section">
+                       <div class="input-group">
+                           <label>Exception 2 Name</label>
+                           <input type="text" id="exception2-name" placeholder="e.g., Facility & Meeting Rooms" oninput="calculateBudgets()">
+                       </div>
+                       <div class="input-row">
+                           <div class="input-group">
+                               <label>Q1 Amount ($)</label>
+                               <input type="number" id="exception2-q1" value="0" oninput="calculateBudgets()">
+                           </div>
+                           <div class="input-group">
+                               <label>Q2 Amount ($)</label>
+                               <input type="number" id="exception2-q2" value="0" oninput="calculateBudgets()">
+                           </div>
+                       </div>
+                       <div class="input-row">
+                           <div class="input-group">
+                               <label>Q3 Amount ($)</label>
+                               <input type="number" id="exception2-q3" value="0" oninput="calculateBudgets()">
+                           </div>
+                           <div class="input-group">
+                               <label>Q4 Amount ($)</label>
+                               <input type="number" id="exception2-q4" value="0" oninput="calculateBudgets()">
+                           </div>
+                       </div>
+                       <div class="exception-total">
+                           <strong>Annual Total: <span id="exception2-total">$0</span></strong>
+                       </div>
+                   </div>
+
+                   <div class="result-box">
+                       <h3>Remaining for Focus Areas</h3>
+                       <div class="budget-summary">
+                           <div class="summary-item">
+                               <span>After Exceptions:</span>
+                               <span id="remaining-after-exceptions">$0</span>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <!-- Focus Area Allocation Tab -->
+       <div id="allocation" class="tab-content">
+           <div class="estimator-grid">
+               <div class="estimator-card">
+                   <h2>👥 Add Focus Area</h2>
+                   
+                   <div class="input-group">
+                       <label>Focus Area Name</label>
+                       <input type="text" id="focus-area-name" placeholder="e.g., Design Systems, UX Research, Product Design">
+                   </div>
+                   
+                   <div class="input-row">
+                       <div class="input-group">
+                           <label>Number of Team Members</label>
+                           <input type="number" id="focus-area-members" value="1" min="1">
+                       </div>
+                       <div class="input-group">
+                           <label>Budget Allocation Method</label>
+                           <select id="allocation-method" onchange="toggleAllocationMethod()">
+                               <option value="equal">Equal per Person</option>
+                               <option value="custom">Custom Amount</option>
+                               <option value="percentage">Percentage of Remaining</option>
+                           </select>
+                       </div>
+                   </div>
+
+                   <div id="custom-amount-section" class="input-group" style="display: none;">
+                       <label>Custom Annual Amount ($)</label>
+                       <input type="number" id="custom-amount" value="0">
+                   </div>
+
+                   <div id="percentage-section" class="input-group" style="display: none;">
+                       <label>Percentage of Remaining Budget (%)</label>
+                       <input type="number" id="percentage-amount" value="0" min="0" max="100">
+                   </div>
+                   
+                   <div class="input-group">
+                       <label>Notes</label>
+                       <input type="text" id="focus-area-notes" placeholder="Additional details about this focus area">
+                   </div>
+                   
+                   <button class="button" onclick="addFocusArea()">Add Focus Area</button>
+               </div>
+
+               <div class="estimator-card">
+                   <h2>📋 Current Focus Areas</h2>
+                   <div id="focus-areas-list" class="vendor-list">
+                       <p style="color: #718096; text-align: center; padding: 20px;">No focus areas added yet. Add your first focus area to get started.</p>
+                   </div>
+                   
+                   <div class="allocation-summary" id="allocation-summary" style="display: none;">
+                       <h4>Allocation Summary</h4>
+                       <div class="summary-item">
+                           <span>Total Allocated:</span>
+                           <span id="total-allocated">$0</span>
+                       </div>
+                       <div class="summary-item">
+                           <span>Remaining Unallocated:</span>
+                           <span id="remaining-unallocated">$0</span>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <!-- Budget Overview Tab -->
+       <div id="overview" class="tab-content">
+           <div class="summary-card">
+               <h2>Complete Budget Overview</h2>
+               <div class="summary-stats">
+                   <div class="stat-item">
+                       <h4>Total Annual Budget</h4>
+                       <div class="value" id="overview-total-budget">$0</div>
+                   </div>
+                   <div class="stat-item">
+                       <h4>Holdback Reserve</h4>
+                       <div class="value" id="overview-holdback">$0</div>
+                   </div>
+                   <div class="stat-item">
+                       <h4>Exception Allocations</h4>
+                       <div class="value" id="overview-exceptions">$0</div>
+                   </div>
+                   <div class="stat-item">
+                       <h4>Focus Area Budgets</h4>
+                       <div class="value" id="overview-focus-areas">$0</div>
+                   </div>
+               </div>
+           </div>
+
+           <div class="estimator-card">
+               <h3>📅 Quarterly Breakdown by Focus Area</h3>
+               <div id="quarterly-table">
+                   <!-- Table will be generated by JavaScript -->
+               </div>
+           </div>
+
+           <div class="export-section">
+               <h3>📥 Export Budget Plan</h3>
+               <p>Download your complete budget allocation as a spreadsheet file</p>
+               <div class="export-buttons">
+                   <button class="button export" onclick="exportBudgetPlan()">Export Complete Budget Plan</button>
+                   <button class="button export" onclick="exportQuarterlyBreakdown()">Export Quarterly Breakdown</button>
+               </div>
+           </div>
+       </div>
+
+       <footer class="footer">
+           <p>Created by <a href="https://changying.substack.com" target="_blank">Chang Ying (Z) Zheng — Design Operations</a> | <a href="https://www.linkedin.com/in/changyingz/" target="_blank">Contact</a></p>
+       </footer>
+   </div>
+
+   <script src="script.js"></script>
+</body>
+</html>

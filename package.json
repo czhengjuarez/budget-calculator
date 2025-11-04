@@ -1,0 +1,21 @@
+{
+  "name": "budget-calculator",
+  "version": "1.0.0",
+  "description": "Budget Allocation & Planning Tool deployed on Cloudflare Workers",
+  "main": "worker.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "keywords": [
+    "budget",
+    "planning",
+    "cloudflare-workers"
+  ],
+  "author": "Chang Ying (Z) Zheng",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  }
+}

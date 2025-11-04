@@ -1,0 +1,9 @@
+name = "budget-calculator"
+main = "worker-bundle.js"
+compatibility_date = "2025-11-01"
+
+# Specify the account ID (you'll need to add your own)
+# account_id = "your-account-id-here"
+
+# Workers configuration
+workers_dev = true
