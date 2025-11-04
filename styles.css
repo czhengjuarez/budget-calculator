@@ -59,10 +59,10 @@ body {
 
 .estimator-card {
    background: white;
-   border-radius: 12px;
+   border-radius: 6px;
    padding: 30px;
    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-   border-left: 6px solid #8F1F57;
+   border: 1px solid #e2e8f0;
 }
 
 .estimator-card h2, .estimator-card h3 {
@@ -140,15 +140,15 @@ body {
 }
 
 .result-box {
-   background: #F5DEEA;
-   border: 2px solid #8F1F57;
+   background: #f8fafc;
+   border: 1px solid #e2e8f0;
    border-radius: 8px;
    padding: 20px;
    margin-top: 20px;
 }
 
 .result-box h3 {
-   color: #8F1F57;
+   color: #1a202c;
    margin-bottom: 15px;
    font-size: 1.1rem;
 }
@@ -176,13 +176,13 @@ body {
 .exception-section {
    margin-bottom: 25px;
    padding: 20px;
-   background: #F5DEEA;
+   background: #f8fafc;
    border-radius: 8px;
-   border: 2px solid #8F1F57;
+   border: 1px solid #e2e8f0;
 }
 
 .exception-section h4 {
-   color: #8F1F57;
+   color: #1a202c;
    margin-bottom: 15px;
    font-size: 1.1rem;
    display: flex;
@@ -192,8 +192,8 @@ body {
 .exception-total {
    margin-top: 15px;
    padding-top: 15px;
-   border-top: 2px solid #8F1F57;
-   color: #8F1F57;
+   border-top: 1px solid #e2e8f0;
+   color: #1a202c;
    text-align: right;
 }
 
